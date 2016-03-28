@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StoryDetails extends AppCompatActivity {
 
@@ -37,9 +38,15 @@ public class StoryDetails extends AppCompatActivity {
         follow_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppConstants.isFollowClicked = true;
-                author.setFollowers(author.getFollowers()+1);
-                about_author.setText(author.getUsername() + "\n" + author.getAbout() + "\nTwitter : " + author.getHandle() + "\nFollowers : " + author.getFollowers() + "\nFollowing : " + author.getFollowing());
+                if(author.is_following()){
+                    Toast.makeText(StoryDetails.this,"Already following",Toast.LENGTH_LONG).show();
+                }else if(!AppConstants.isFollowClicked){
+                    AppConstants.isFollowClicked = true;
+                    author.setFollowers(author.getFollowers() + 1);
+                    about_author.setText(author.getUsername() + "\n" + author.getAbout() + "\nTwitter : " + author.getHandle() + "\nFollowers : " + author.getFollowers() + "\nFollowing : " + author.getFollowing());
+                }else{
+                    Toast.makeText(StoryDetails.this,"Already following",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

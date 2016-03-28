@@ -1,9 +1,11 @@
 package com.example.storymania;
 
+import java.io.Serializable;
+
 /**
  * Created by nightstay on 21/03/16.
  */
-public class Author {
+public class Author implements Serializable{
     public String getAbout() {
         return about;
     }

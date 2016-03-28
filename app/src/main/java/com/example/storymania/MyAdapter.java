@@ -1,8 +1,11 @@
 package com.example.storymania;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,17 +51,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.story_title.setText(mDataset.get(position).getTitle());
         holder.story_desc.setText(mDataset.get(position).getDescription());
-        for(int i=0; i < authors.size(); i++){
+        int i=0;
+        for(i=0; i < authors.size(); i++){
             if(authors.get(i).getId().equalsIgnoreCase(mDataset.get(position).getDb())){
                 holder.story_author.setText("By: " + authors.get(i).getUsername());
                 break;
             }
         }
 
+        final int k=i;
         Picasso.with(context).load(mDataset.get(position).getSi()).into(holder.si);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, StoryDetails.class);
+                intent.putExtra("StoryDetails", mDataset.get(position));
+                intent.putExtra("AuthorDetails", authors.get(k));
+                AppConstants.lastIndex = k;
+                context.startActivity(intent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

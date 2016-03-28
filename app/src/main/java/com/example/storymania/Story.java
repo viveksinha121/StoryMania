@@ -1,15 +1,15 @@
 package com.example.storymania;
 
-/**
- * Created by nightstay on 21/03/16.
- */
-public class Story {
-    public String getAbout() {
-        return about;
+import java.io.Serializable;
+
+public class Story implements Serializable{
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getId() {
@@ -20,20 +20,20 @@ public class Story {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getVerb() {
+        return verb;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setVerb(String verb) {
+        this.verb = verb;
     }
 
-    public String getImage() {
-        return image;
+    public String getDb() {
+        return db;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setDb(String db) {
+        this.db = db;
     }
 
     public String getUrl() {
@@ -44,47 +44,57 @@ public class Story {
         this.url = url;
     }
 
-    public String getHandle() {
-        return handle;
+    public String getSi() {
+        return si;
     }
 
-    public void setHandle(String handle) {
-        this.handle = handle;
+    public void setSi(String si) {
+        this.si = si;
     }
 
-    public boolean is_following() {
-        return is_following;
+    public String getType() {
+        return type;
     }
 
-    public void setIs_following(boolean is_following) {
-        this.is_following = is_following;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public long getFollowers() {
-        return followers;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFollowers(long followers) {
-        this.followers = followers;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public long getFollowing() {
-        return following;
+    public boolean isLike_flag() {
+        return like_flag;
     }
 
-    public void setFollowing(long following) {
-        this.following = following;
+    public void setLike_flag(boolean like_flag) {
+        this.like_flag = like_flag;
     }
 
-    public long getCreatedOn() {
-        return createdOn;
+    public long getLikes_count() {
+        return likes_count;
     }
 
-    public void setCreatedOn(long createdOn) {
-        this.createdOn = createdOn;
+    public void setLikes_count(long likes_count) {
+        this.likes_count = likes_count;
     }
 
-    String about,id,username,image,url,handle;
-    boolean is_following;
-    long followers,following,createdOn;
+    public long getComment_count() {
+        return comment_count;
+    }
+
+    public void setComment_count(long comment_count) {
+        this.comment_count = comment_count;
+    }
+
+    String description, id, verb, db, url, si, type, title;
+    boolean like_flag;
+    long likes_count;
+    long comment_count;
+
 }
